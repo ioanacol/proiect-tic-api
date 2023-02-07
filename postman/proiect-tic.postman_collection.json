@@ -1,0 +1,660 @@
+{
+	"info": {
+		"_postman_id": "bd83b4eb-a48c-4e48-af8a-76dae0524b73",
+		"name": "proiect-tic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18120273"
+	},
+	"item": [
+		{
+			"name": "Identity",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"jwt\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"ioana@email.com\",\n    \"password\": \"supersecretpassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"changePassword\": \"supersecretpassword\",\r\n    \"confirmPassword\": \"supersecretpassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/change-password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iure, repellat natus pariatur ipsum ducimus non repellendus dolores distinctio veritatis.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/comments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Many",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/comments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/comments/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"comments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "Z6WTxfNbHlnut11Mm8Zr"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/comments/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"comments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "Z6WTxfNbHlnut11Mm8Zr"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/comments/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"comments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "Z6WTxfNbHlnut11Mm8Zr"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Bacon ipsum dolor amet beef chicken bacon salami, fatback shoulder spare ribs ground round shank boudin tenderloin sausage doner jerky. Pork belly rump bresaola short loin strip steak jerky. Meatloaf pork chop chislic drumstick swine cupim jerky ribeye strip steak. Bacon picanha ham hock, buffalo landjaeger ball tip leberkas filet mignon pork belly ground round swine meatloaf.\",\r\n    \"title\": \"Bacon ipsum\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/posts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Many",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/posts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/posts/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"posts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "eBMrYcZfobtHWs8hU1rB"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Bacon ipsum dolor amet pastrami ball tip ground round tenderloin, jowl landjaeger bresaola shankle porchetta beef bacon turkey pork loin t-bone. Brisket leberkas t-bone porchetta swine pork short ribs. Buffalo brisket corned beef shank andouille tail. Beef ribs turkey picanha drumstick pork chop.\",\r\n    \"title\": \"Bacon ipsum dolor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/posts/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"posts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "eBMrYcZfobtHWs8hU1rB"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/posts/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"posts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "eBMrYcZfobtHWs8hU1rB"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Bacon ipsum dolor amet corned beef ball tip jowl short loin pork, tail pork chop beef.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/posts/:id/comments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"posts",
+								":id",
+								"comments"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "KYQPke7341TwrsHGtBJv"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/posts/:id/comments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"posts",
+								":id",
+								"comments"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "KYQPke7341TwrsHGtBJv"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/posts/:id/comments/:commentId",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"posts",
+								":id",
+								"comments",
+								":commentId"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "KYQPke7341TwrsHGtBJv"
+								},
+								{
+									"key": "commentId",
+									"value": "6fpA3FwtFdbFz4l6V6dg"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/posts/:id/comments/:commentId",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"posts",
+								":id",
+								"comments",
+								":commentId"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "KYQPke7341TwrsHGtBJv"
+								},
+								{
+									"key": "commentId",
+									"value": "6fpA3FwtFdbFz4l6V6dg"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/posts/:id/comments/:commentId",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"posts",
+								":id",
+								"comments",
+								":commentId"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "KYQPke7341TwrsHGtBJv"
+								},
+								{
+									"key": "commentId",
+									"value": "6fpA3FwtFdbFz4l6V6dg"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:9000"
+		},
+		{
+			"key": "jwt",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ3NDQwMWFjLThlMTgtNDkzMC05YzM3LWRkNzMyZWRiOTMzYyIsIm5hbWUiOiJNaWNoYWVsIFNjb3R0IiwiZW1haWwiOiJtaWNoYWVsQGVtYWlsLmNvbSIsImlhdCI6MTYxNDUxODIzOSwiZXhwIjoxNjE0NTE5MTM5fQ.aybxWo7tCATpU8jbBjgYUEg5LYP_gPdfWDi_9kE01iM"
+		}
+	]
+}
